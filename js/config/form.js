@@ -353,7 +353,7 @@ const formConfig = {
               'ui:description': '[Helper text here]', //TODO
               'ui:validations': '', //TODO
               'ui:errorMessages': {
-                 pattern: 'Please enter your business\'s street address?.',
+                 pattern: 'Please enter your business\'s street address.',
               }
             },
             petitionerBusinessCity: {
@@ -431,7 +431,7 @@ const formConfig = {
               }
             },
             petitionerBusinessDaytimePhoneExt: {
-              'ui:title': 'What is your business\'s daytime phone number extentio?',
+              'ui:title': 'What is your business\'s daytime phone number extention?',
               'ui:description': '[Helper text here]', //TODO
             },
             petitionerBusinessMobilePhone: {
@@ -451,61 +451,286 @@ const formConfig = {
       }
     },
 
-    //CHAPTER 3 About the Employer's Business
+    //CHAPTER 3 About the Employer
 
-    aboutBusiness: {
-      title: 'About the Business',
+    aboutEmployer: {
+      title: 'About the Employer',
       pages: {
-        firstPage: {
-          path: 'about-business/first-page',
-          title: 'First Page',
-          uiSchema: {
-            //fullName: fullNameUI
-          },
+
+        aboutEmployerBusiness: {
+          path: 'about-employer/employer-business',
+          title: 'Tell Us About the Employer',
+
           schema: {
             type: 'object',
+            required: [
+              'employerLegalBusinessName',
+              'employerDBAName',
+              'employerBusinessStreetAddress',
+              'employerBusinessCity',
+              'employerBusinessState',
+              'employerBusinessPostalCode',
+              'employerBusinessCountry'
+            ],
             properties: {
-              //fullName
+              employerLegalBusinessName: {
+                title: 'What is the employer\'s legal business name?',
+                type: 'string',
+              }, 
+              employerDBAName: {
+                title: 'What is the employer\'s trade name/doing business as (DBA) name, if applicable?',
+                type: 'string',
+              }, 
+              employerBusinessStreetAddress: {
+                title: 'What is the employer\'s business\'s street address?',
+                type: 'string',
+              },  
+              employerBusinessCity: {
+                title: 'What is the employer\'s business\'s city?',
+                type: 'string'
+              },
+              employerBusinessState: {
+                title: 'What is the employer\'s business\'s state?',
+                type: 'string'  // TODO: change to a select using state definitions
+              }, 
+              employerBusinessPostalCode: {
+                title: 'What is the employer\'s business\'s postal code?',
+                type: 'string'
+              },
+              employerBusinessCountry: {
+                title: 'What is the employer\'s business\'s country?',
+                type: 'string' // TODO: change to a select using country definitions; if Canada, add select of provinces
+              }                            
+            }
+          },
+
+          uiSchema: {
+            employerLegalBusinessName: {
+              'ui:title': 'What is the employer\'s legal business name?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s legal business name.',
+              }
+            },
+            employerDBAName: {
+              'ui:title': 'What is the employer\'s trade name/doing business as (DBA) name, if applicable?',
+              'ui:description': '[Helper text here]', //TODO
+            },
+            employerBusinessStreetAddress: {
+              'ui:title': 'What is the employer\'s business\'s street address?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s business\'s street address?.',
+              }
+            },
+            employerBusinessCity: {
+              'ui:title': 'What is the employer\'s business\'s city?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s business\'s city.'
+              }
+            },
+            employerBusinessState: {
+              'ui:title': 'What is the employer\'s business\'s state?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please select the employer\'s business\'s state.'
+              }
+            },
+            employerBusinessPostalCode: {
+              'ui:title': 'What is the employer\'s business\'s postal code?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s business\'s postal code.'
+              }
+            },
+            employerBusinessCountry: {
+              'ui:title': 'What is the employer\'s business\'s country?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please select the employer\'s business\'s country.'
+              }
             }
           }
         },
-        secondPage: {
-          path: 'about-business-page',
-          title: 'Second Page',
-          uiSchema: {},
+
+        aboutEmployerBusinessContact: {
+          path: 'about-employer/employer-business-contact',
+          title: 'Tell Us About the Employer\'s Business Contact Information',
+
           schema: {
             type: 'object',
-            properties: {}
+            required: [
+              'employerBusinessDaytimePhone',
+              'employerBusinessEmailAddress'
+            ],
+            properties: {
+              employerBusinessDaytimePhone: {
+                title: 'What is the employer\'s business\'s daytime phone number?',
+                type: 'string',
+              },  
+              employerBusinessDaytimePhoneExt: {
+                title: 'What is the employer\'s business\'s daytime phone number extention?',
+                type: 'string'
+              },
+              employerBusinessFax: {
+                title: 'What is the employer\'s business\'s fax number?',
+                type: 'string'  
+              }, 
+              employerBusinessEmailAddress: {
+                title: 'What is the employer\'s business\'s e-mail address?',
+                type: 'string' 
+              },                            
+            }
+          },
+
+          uiSchema: {
+            employerBusinessDaytimePhone: {
+              'ui:title': 'What is the employer\'s business\'s daytime phone number?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s business\'s daytime phone number.',
+              }
+            },
+            employerBusinessDaytimePhoneExt: {
+              'ui:title': 'What is the employer\'s business\'s daytime phone number extention?',
+              'ui:description': '[Helper text here]', //TODO
+            },
+            employerBusinessFax: {
+              'ui:title': 'What is the employer\'s business\'s fax number?',
+              'ui:description': '[Helper text here]', //TODO
+            },
+            employerBusinessEmailAddress: {
+              'ui:title': 'What is the employer\'s business\'s email address?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s business\'s email address.'
+              },
+            }
           }
-        }
+        },
+
+        aboutEmployerBusinessInformation: {
+          path: 'about-employer/employer-business-info',
+          title: 'Tell Us More About the Employer\'s Business',
+
+          schema: {
+            type: 'object',
+            required: [
+              'employerFEIN',
+              'employerNAICS',
+              'employerNonFamilyFTE',
+              'employerNonFamilyFTEUS',
+              'employerAnnualGrossRevenue',
+              'employerAnnualNetIncome',
+              'employerYearEstablished'
+            ],
+            properties: {
+              employerFEIN: {
+                title: 'What is the employer\'s Federal Employer Identification Number (FEIN)?',
+                type: 'string',
+              },  
+              employerNAICS: {
+                title: 'What is the employer\'s NAICS code?',
+                type: 'string'
+              },
+              employerNonFamilyFTE: {
+                title: 'What is the employer\'s total number of non-family full-time equivalent employees?',
+                type: 'integer'  
+              }, 
+              employerNonFamilyFTEUS: {
+                title: 'What is the employer\'s total number of non-family full-time equivalent employees in the United States?',
+                type: 'integer' 
+              },      
+              employerAnnualGrossRevenue: {
+                title: 'What is the employer\'s annual gross revenue?',
+                type: 'string' //TODO: check type
+              },   
+              employerAnnualNetIncome: {
+                title: 'What is the employer\'s annual net income?',
+                type: 'string' //TODO: check type
+              },   
+              employerYearEstablished: {
+                title: 'What year was the employer\'s business established?',
+                type: 'string' //TODO: check type
+              },                         
+            }
+          },
+
+          uiSchema: {
+            employerFEIN: {
+              'ui:title': 'What is the employer\'s Federal Employer Identification Number (FEIN)?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s Federal Employer Identification Number (FEIN).',
+              }
+            },
+            employerNAICS: {
+              'ui:title': 'What is the employer\'s NAICS code?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s NAICS code.',
+              }
+            },
+            employerNonFamilyFTE: {
+              'ui:title': 'What is the employer\'s total number of non-family full-time equivalent employees?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s total number of non-family full-time equivalent employees.',
+              }
+            },
+            employerNonFamilyFTE: {
+              'ui:title': 'What is the employer\'s total number of non-family full-time equivalent employees in the United States?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s total number of non-family full-time equivalent employees in the United States.',
+              }
+            },
+            employerAnnualGrossRevenue: {
+              'ui:title': 'What is the employer\'s annual gross revenue?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s annual gross revenue?).',
+              }
+            },
+            employerAnnualNetIncome: {
+              'ui:title': 'What is the employer\'s annual net income?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the employer\'s annual net income.',
+              }
+            },
+            employerYearEstablished: {
+              'ui:title': 'What year was the employer\'s business established?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter the year the employer\'s business was established.',
+              }
+            }            
+          }
+        },
       }
     },
 
+
+
+
 /*
-
-Contact Information 
-TEXT  Legal Business Name
-TEXT  Trade name/Doing Business As (DBA), if applicable
-EXT Address 1
-TEXT  Address 2
-TEXT  City
-SELECT  State
-TEXT  Postal code
-SELECT  Country
-TEXT  Province 
-TEXT  Telephone Number
-TEXT  Telephone Extension
-TEXT  Fax Number
-EMAIL E-mail Address
-
-Business Information  
-TEXT  Federal Employer Identification Number (FEIN)
-TEXT  NAICS Code 
-TEXT  Total Number of non-family full-time equivalent employees
-TEXT  Number of these employees in the United States
-TEXT  Annual gross revenue
-TEXT  Net Annual Income
-TEXT  Year established
 
 e-Verify Information  
 RADIO If you are an H-2A petitioner, are you a participant in e-Verify?
