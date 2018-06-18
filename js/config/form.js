@@ -27,6 +27,9 @@ const formConfig = {
 
 
   chapters: {
+
+    //CHAPTER 1: About the Petition
+
     aboutPetition: {
       title: 'About this Petition',
       pages: {
@@ -53,19 +56,19 @@ const formConfig = {
                 enumNames: ['Individual Employer']
               }, 
               employerNumber: {
-                title: 'How Many Employers are There?',
+                title: 'How many employers are there?',
                 type: 'integer',
                 default: 1
                 //TODO: Check if limit; use range if necessary
               },
               numberWorkersRequested: {
-                title: 'Number of Workers Requested',
+                title: 'Number of workers requested',
                 type: 'integer',
                 default: 1
                 //TODO: Check if limit; use range if necessary
               }, 
               workersNamed: {
-                title: 'Are the Workers Named?',
+                title: 'Are the workers named?',
                 type: 'string',
                 default: 'No',
                 enum: ['Yes','No'],
@@ -79,14 +82,14 @@ const formConfig = {
                 enum: ['Yes','No'],
                 enumNames: ['Yes','No']
                 //TODO: Implement non-happy-path conditional
-              },
+              }
             }
           },
 
           uiSchema: {
             employerType: {
               'ui:title': 'What type of employer is seeking workers?',
-              'ui:description': '[Helper text here]',
+              'ui:description': '[Helper text here]', //TODO
               'ui:widget': 'select',
               'ui:validations': '', //TODO
               'ui:errorMessages': {
@@ -94,8 +97,8 @@ const formConfig = {
               },
             }, 
             employerNumber: {
-              'ui:title': 'How Many Employers are There?',
-              'ui:description': '[Helper text here]',
+              'ui:title': 'How many employers are there?',
+              'ui:description': '[Helper text here]', //TODO
               'ui:widget': 'updown', //TODO: check that type is handled in review stage
               'ui:validations': '',  //TODO
               'ui:errorMessages': {
@@ -103,8 +106,8 @@ const formConfig = {
               },
             }, 
             numberWorkersRequested: {
-              'ui:title': 'Number of Workers Requested',
-              'ui:description': '[Helper text here]',
+              'ui:title': 'Number of workers requested',
+              'ui:description': '[Helper text here]', //TODO
               'ui:widget': 'updown',  //TODO: check that type is handled in review stage
               'ui:validations': '',   //TODO
               'ui:errorMessages': {
@@ -112,17 +115,17 @@ const formConfig = {
               },
             }, 
             workersNamed: {
-              'ui:title': 'Are the Workers Named?',
-              'ui:description': '[Helper text here]',
+              'ui:title': 'Are the workers named?',
+              'ui:description': '[Helper text here]', //TODO
               'ui:widget': 'radio',
               'ui:validations': '', //TODO
               'ui:errorMessages': {
                  pattern: 'Please indicate if your petition includes named workers.'
               },
-             },     
+            },     
             usingFLCorOther: {
               'ui:title': 'Is the employer using a Farm Labor Contractor (FLC), placement service, or other agent to recruit, supervise, transport, house, and/or pay for these workers?',
-              'ui:description': '[Helper text here]',
+              'ui:description': '[Helper text here]', //TODO
               'ui:widget': 'radio',
               'ui:validations': '', //TODO
               'ui:errorMessages': {
@@ -167,7 +170,6 @@ const formConfig = {
                 //TODO: Add the remaining options (they kick conditionals)
                 enum: ['Notify the office in Part 4, so that each beneficiary can obtain a visa.'],
                 enumNames: ['Notify the office in Part 4, so that each beneficiary can obtain a visa.']
-          
               }
             }
           },
@@ -175,7 +177,7 @@ const formConfig = {
           uiSchema: {
             confirmH2A: {
               'ui:title': 'Are you seeking Temporary Agricultural Worker Visas (H-2A Visas) for these workers?',
-              'ui:description': '[Helper text here]',
+              'ui:description': '[Helper text here]', //TODO
               'ui:widget': 'radio',
               'ui:validations': '', //TODO
               'ui:errorMessages': {
@@ -184,16 +186,16 @@ const formConfig = {
             },
             basisForVisaClassification: {
               'ui:title': 'What is the basis for the visa classification supported by this application?',
-              'ui:description': '[Helper text here]',
+              'ui:description': '[Helper text here]', //TODO
               'ui:widget': 'select',
               'ui:validations': '', //TODO
               'ui:errorMessages': {
                  pattern: 'Please select the basis for the visa classification supported by this application.'
-              },
+              }
             }, 
             requestedAction: {
               'ui:title': 'What action are you requesting in this petition?',
-              'ui:description': '[Helper text here]',
+              'ui:description': '[Helper text here]', //TODO
               'ui:widget': 'radio',
               'ui:validations': '', //TODO
               'ui:errorMessages': {
@@ -205,42 +207,251 @@ const formConfig = {
       }
     },
 
-
-
-
-
-
-
+    //CHAPTER 2: About the Petitioner
 
     aboutPetitioner: {
       title: 'About Yourself',
       pages: {
-        firstPage: {
-          path: 'about-petitioner/first-page',
-          title: 'First Page',
-          uiSchema: {
-            //fullName: fullNameUI
-          },
+        aboutRelationshipToEmployer: {
+          path: 'about-petitioner/relationship-to-employer',
+          title: 'Tell Us About Your Relationship to the Employer',
+
           schema: {
             type: 'object',
+            required: [
+              'relationshipToEmployer',
+              'petitionerJobTitle'
+            ],
             properties: {
-              //fullName
+              relationshipToEmployer: {
+                title: 'What is your relationship to the employer?',
+                type: 'string',
+                default: 'Employee / Owner',
+                enum: ['Attorney','Employee / Owner', 'Agent - Non-attorney Preparer'],
+                enumNames: ['Attorney','Employee / Owner', 'Agent - Non-attorney Preparer']
+                //TODO: Implement non-happy-path conditional
+              },  
+              petitionerJobTitle: {
+                title: 'What is your job title?',
+                type: 'string'
+              } 
+            }
+          },
+
+          uiSchema: {
+            relationshipToEmployer: {
+              'ui:title': 'What is your relationship to the employer?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:widget': 'radio',
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please select your relationship to the employer.'
+              }             
+            },
+            petitionerJobTitle: {
+              'ui:title': 'What is your job title?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter your job title.'
+              }
+            }                          
+          }
+        },
+
+        aboutPetitionerName: {
+          path: 'about-petitioner/petitioner-name',
+          title: 'Tell Us More About You',
+
+          schema: {
+            type: 'object',
+            required: [
+              'petitionerFirstName',
+              'petitionerLastName'
+            ],
+            properties: {
+              petitionerFirstName: {
+                title: 'What is your first (given) name?',
+                type: 'string',
+              },  
+              petitionerMiddleName: {
+                title: 'What is your middle name or names?',
+                type: 'string'
+              },
+              petitionerLastName: {
+                title: 'What is your last (family) name?',
+                type: 'string'
+              }
+            }
+          },
+
+          uiSchema: {
+            petitionerFirstName: {
+              'ui:title': 'What is your first (given) name?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter your first (given) name.'
+              }
+            },
+            petitionerMiddleName: {
+              'ui:title': 'What is your middle name or names?',
+              'ui:description': '[Helper text here]' //TODO
+            },
+            petitionerLastName: {
+              'ui:title': 'What is your last (family) name?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter your last (family) name.'
+              }
+            }                        
+          }
+        },
+
+
+        aboutPetitionerBusinessAddress: {
+          path: 'about-petitioner/petitioner-business-address',
+          title: 'Tell Us About Your Business',
+
+          schema: {
+            type: 'object',
+            required: [
+              'petitionerBusinessStreetAddress',
+              'petitionerBusinessCity',
+              'petitionerBusinessState',
+              'petitionerBusinessPostalCode',
+              'petitionerBusinessCountry'
+            ],
+            properties: {
+              petitionerBusinessStreetAddress: {
+                title: 'What is your business\'s street address?',
+                type: 'string',
+              },  
+              petitionerBusinessCity: {
+                title: 'What is your business\'s city?',
+                type: 'string'
+              },
+              petitionerBusinessState: {
+                title: 'What is your business\'s state?',
+                type: 'string'  // TODO: change to a select using state definitions
+              }, 
+              petitionerBusinessPostalCode: {
+                title: 'What is your business\'s postal code?',
+                type: 'string'
+              },
+              petitionerBusinessCountry: {
+                title: 'What is your business\'s country?',
+                type: 'string' // TODO: change to a select using country definitions; if Canada, add select of provinces
+              }                            
+            }
+          },
+
+          uiSchema: {
+            petitionerBusinessStreetAddress: {
+              'ui:title': 'What is your business\'s street address?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter your business\'s street address?.',
+              }
+            },
+            petitionerBusinessCity: {
+              'ui:title': 'What is your business\'s city?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter your business\'s city.'
+              }
+            },
+            petitionerBusinessState: {
+              'ui:title': 'What is your business\'s state?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please select your business\'s state.'
+              }
+            },
+            petitionerBusinessPostalCode: {
+              'ui:title': 'What is your business\'s postal code?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter your business\'s postal code.'
+              }
+            },
+            petitionerBusinessCountry: {
+              'ui:title': 'What is your business\'s country?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please select your business\'s country.'
+              }
             }
           }
         },
-        secondPage: {
-          path: 'about-petitioner/second-page',
-          title: 'Second Page',
-          uiSchema: {},
+
+        aboutPetitionerBusinessContact: {
+          path: 'about-petitioner/petitioner-business-contact',
+          title: 'Tell Us About Your Business Contact Information',
+
           schema: {
             type: 'object',
-            properties: {}
+            required: [
+              'petitionerBusinessDaytimePhone',
+              'petitionerBusinessEmailAddress'
+            ],
+            properties: {
+              petitionerBusinessDaytimePhone: {
+                title: 'What is your business\'s daytime phone number?',
+                type: 'string',
+              },  
+              petitionerBusinessDaytimePhoneExt: {
+                title: 'What is your business\'s daytime phone number extention?',
+                type: 'string'
+              },
+              petitionerBusinessMobilePhone: {
+                title: 'What is your business\'s mobile phone number?',
+                type: 'string'  
+              }, 
+              petitionerBusinessEmailAddress: {
+                title: 'What is your business\'s e-mail address?',
+                type: 'string' 
+              },                            
+            }
+          },
+
+          uiSchema: {
+            petitionerBusinessDaytimePhone: {
+              'ui:title': 'What is your business\'s daytime phone number?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter your business\'s daytime phone number.',
+              }
+            },
+            petitionerBusinessDaytimePhoneExt: {
+              'ui:title': 'What is your business\'s daytime phone number extentio?',
+              'ui:description': '[Helper text here]', //TODO
+            },
+            petitionerBusinessMobilePhone: {
+              'ui:title': 'What is your business\'s mobile phone number?',
+              'ui:description': '[Helper text here]', //TODO
+            },
+            petitionerBusinessEmailAddress: {
+              'ui:title': 'What is your business\'s email address?',
+              'ui:description': '[Helper text here]', //TODO
+              'ui:validations': '', //TODO
+              'ui:errorMessages': {
+                 pattern: 'Please enter your business\'s email address.'
+              },
+            }
           }
         }
       }
     },
 
-
+    //CHAPTER 3 About the Employer's Business
 
     aboutBusiness: {
       title: 'About the Business',
@@ -271,36 +482,6 @@ const formConfig = {
     },
 
 /*
-Tell us about Yourself  
-
-SELECT  What is your relationship to the employer?
-  Attorney
-  Employee / Owner
-  Agent - Non-attorney Preparer
-
-TEXT  What is your Job Title?
-
-What is your Name?  
-  
-TEXT  Last (family) name
-TEXT  First (given) name
-TEXT  Middle name(s)
-
-What is your Business Address?  
-TEXT  Address 1
-TEXT  Address 2
-TEXT  City
-SELECT  State
-TEXT  Postal code
-SELECT  Country
-TEXT  Province
-
-What is your Business Contact Information?  
-TEXT  Daytime Telephone Number
-TEXT  Extension
-TEXT  Mobile Telephone Number
-EMAIL E-Mail address
-
 
 Contact Information 
 TEXT  Legal Business Name
@@ -331,6 +512,9 @@ RADIO If you are an H-2A petitioner, are you a participant in e-Verify?
 TEXT  Provide E-verify Company ID or Client Company ID 
 
 */
+
+    //CHAPTER 4: About the Job
+
     aboutJob: {
       title: 'About the Job',
       pages: {
@@ -363,6 +547,7 @@ TEXT  Provide E-verify Company ID or Client Company ID
         }
       }
     },
+
 
 /*
 About the Job 
@@ -540,6 +725,8 @@ String - Paragraph
 
 
 */
+
+    //CHAPTER 5: About the Foreign Workers
 
     aboutForeignWorkers: {
       title: 'About the Foreign Workers',
@@ -835,7 +1022,9 @@ String - Paragraph
         },
       }
     },
-    
+
+
+    //CHAPTER 6: About the American Workers
 
     aboutUSWorkers: {
       title: 'About the American Workers',
